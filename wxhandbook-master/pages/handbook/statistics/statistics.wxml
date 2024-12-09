@@ -1,0 +1,38 @@
+<import src="../../common/foot.wxml" />
+<view class="container">
+  <view class="page-head">
+    <view class="page-head-desc">
+      本次活动共计花费 {{ sum }} 元，个人花费 {{ persum }} 元。
+    </view>
+    <view class="page-head-line"></view>
+  </view>
+
+  <!-- 使用 scroll-view 确保页面内容可以正常滚动 -->
+  <scroll-view scroll-y="true" style="height: calc(100vh - 120rpx);">
+    <view class="page-body">
+      <!-- 消费统计图部分 -->
+      <view class="page-section page-section-title">
+        消费统计图：
+      </view>
+      <view class="page-section page-section-gap">
+        <canvas canvas-id="pieCanvas" class="canvas" style="height: 300px; width: 100%;" bindtouchstart="touchHandler"></canvas>
+      </view>
+
+      <!-- 消费轨迹图部分 -->
+      <view class="page-section page-section-title">
+        消费轨迹图：
+      </view>
+      <view class="page-section page-section-gap">
+        <map id="map" style="width: 100%; height: 300px;" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" polyline="{{polyline}}" include-points="{{points}}" show-location></map>
+      </view>
+
+      <!-- 导出报表按钮 -->
+      <view class="page-section page-section-gap">
+        <button bindtap="exportReport" type="primary">导出报表</button>
+      </view>
+    </view>
+  </scroll-view>
+
+  <template is="foot" />
+</view>
+

@@ -1,0 +1,39 @@
+<!-- settings.wxml -->
+<import src="../common/foot.wxml" />
+<view class="container">
+
+  <view class="page-head">
+    <view class="page-head-desc">设置账目分类</view>
+    <view class="page-head-line"></view>
+  </view>
+
+  <!-- 新增账本的模态框 -->
+  <view>
+    <modal title="新增账本" hidden="{{modalHidden1}}" confirm-text="确定" cancel-text="取消" bindconfirm="modalBindaconfirm1" bindcancel="modalBindcancel1">
+      <input name="title" placeholder="请输入账本名称" value="{{temptitle}}" bindinput="setTitle" />
+    </modal>
+  </view>
+
+  <view class="page-body">
+    <view class="index-bd">
+      <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{list}}" wx:key="id">
+        <view class="content" style="display:flex">
+          <view class="navigator-text">{{item.name}}</view>
+        </view>
+        <view class="del" catchtap="del" data-index="{{index}}">删除</view>
+      </view>
+    </view>
+
+    <!-- 新增账本按钮 -->
+    <view bindtap="showModal1">
+      <image class="float-action2" src="../common/icon/add.png" />
+    </view>
+
+    <!-- 清除所有账本按钮 -->
+    <view bindtap="clearAll">
+      <image class="float-action" src="../common/icon/delete.png" />
+    </view>
+  </view>
+
+  <template is="foot" />
+</view>
